@@ -1,2 +1,16 @@
 # Editor config
 .vscode
+
+# Ignore MSVC build artifacts
+*.obj
+*.exe
+*.pdb
+*.ilk
+
+# Ignore VS Code folder (optional)
+.vscode/
+
+# Ignore other common C++ build files
+*.log
+*.out
+*.idb
