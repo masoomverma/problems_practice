@@ -7,10 +7,26 @@ class Person {
         std::string name;
         int age;
 
-        Person(std::string name, int age) : name{ name }, age { age } {}
-        bool operator < (const Person& p1) const {
+		Person() = default; 
+		/* or 
+		Person() {
+			name = ""; 
+			age = 0;
+		} or 
+		Person() : name{""}, age{0} {}
+        */
+		Person(std::string name, int age) : name{ name }, age { age } {}
+        bool operator<(const Person& p1) const {
             return age < p1.age;
         }
+		
+		bool operator>(const Person& p1) const {
+			return age > p1.age;
+		}
+		
+		bool operator()(const Person& p1, const Person& p2) const {
+			return p1.age < p2.age;
+		}
 };
 
 /*
@@ -28,7 +44,7 @@ int main() {
 int main() {
     std::vector<Person> per = {{"Smita", 19}, {"Masoom", 20}, {"Rohit", 17}, {"Harsh", 18}, {"Shivam", 16}, {"Rahul", 18}};
 
-    std::sort(per.begin(), per.end(), std::less<Person>());
+    std::sort(per.begin(), per.end(), Person());
     for (auto &elm : per) {
         std::cout << elm.name << " : " << elm.age << std::endl;
     }
